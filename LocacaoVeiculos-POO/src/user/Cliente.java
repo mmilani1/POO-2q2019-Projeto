@@ -1,11 +1,11 @@
-package employee;
+package user;
 
 import java.util.ArrayList;
 import java.util.List;
 import orm.Model;
 
-public class Employee extends Model {
-	static private List<Employee> employees = new ArrayList<Employee>();
+public class Cliente extends Model {
+	static private List<Cliente> employees = new ArrayList<Cliente>();
 	static int idCounter = 0;
 
 	@SuppressWarnings("unused")
@@ -20,29 +20,29 @@ public class Employee extends Model {
 		this.name = name;
 	}
 
-	static public List<Employee> employees() {
+	static public List<Cliente> employees() {
 		return employees;
 	}
 
-	public Employee() {
+	public Cliente() {
 		id = autoIncrements();
 	}
 
-	public Employee(String name) {
+	public Cliente(String name) {
 		id = autoIncrements();
 		setName(name);
 	}
 
 	public static void load() {
-		employees = new ArrayList<>(loadInstances(Employee.class));
+		employees = new ArrayList<>(loadInstances(Cliente.class));
 		idCounter = employees.size();
 	}
 
 	public static void create(String nome) {
-		Employee employee = new Employee(nome);
+		Cliente employee = new Cliente(nome);
 		employees.add(employee);
 
-		save(Employee.class, employees());
+		save(Cliente.class, employees());
 	}
 
 	private static int autoIncrements() {

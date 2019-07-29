@@ -3,19 +3,19 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import employee.Employee;
-import employee.Funcionario;
+import Application.Application;
+import user.Cliente;
+import user.Funcionario;
 
 /**
  * Main
  */
 public class Main {
 	public static void main(String[] args) {
+		System.out.println("Carregando dados");
 		Initializer.loadData();
 		
-		System.out.println(Employee.employees());
-		Employee.create("Matheus");
-		System.out.println(Employee.employees());
-		Employee.create("Jose");
+		System.out.println("Inicializando programa");
+		Application.start();
 	}
 }

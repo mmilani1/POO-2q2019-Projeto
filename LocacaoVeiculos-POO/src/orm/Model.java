@@ -10,7 +10,7 @@ public class Model {
 	protected static <T> List<T> loadInstances(Class<T> classType) {
 		List<T> instances = new ArrayList<>();
 		String path = System.getProperty("user.dir");
-		String filePath = path + "\\database\\" + classType.getSimpleName();
+		String filePath = path + "/database/" + classType.getSimpleName();
 
 		try {
 			File file = new File(filePath);
@@ -24,7 +24,7 @@ public class Model {
 	
 	protected static <T> boolean save(Class<T> classType, List<T> instances) {
 		String path = System.getProperty("user.dir");
-		String filePath = path + "\\database\\" + classType.getSimpleName();
+		String filePath = path + "/database/" + classType.getSimpleName();
 
 		try {
 			File file = new File(filePath);
