@@ -13,6 +13,10 @@ public class Employee extends Model {
 	private String email;
 	private String password;
 
+	public int getId() {
+		return id;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -23,6 +27,14 @@ public class Employee extends Model {
 	
 	public String getPassword() {
 		return this.password;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public void setName (String name) {
+		this.name = name;
 	}
 	
 	// Constructors
@@ -56,14 +68,22 @@ public class Employee extends Model {
 		save(Employee.class, employees());
 	}
 
+	public static void delete(Employee employee) {
+		employees.remove(employee);
+		save(Employee.class, employees());
+	}
+	
+	public static void update() {
+		save(Employee.class, employees());
+	}
+	
 	private static int autoIncrements() {
 		idCounter += 1;
 		return idCounter;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "Employee: " + getName();
+		return "[ ID: " + getId() + " | Nome: " + getName() + " | Email: " + getEmail() + " ]";
 	}
-
 }

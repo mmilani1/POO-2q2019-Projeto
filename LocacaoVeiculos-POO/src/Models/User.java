@@ -12,6 +12,10 @@ public class User extends Model {
 	private String name;
 	private String email;
 	private String password;
+	
+	public int getId() {
+		return id;
+	}
 
 	public String getName() {
 		return name;
@@ -63,6 +67,6 @@ public class User extends Model {
 
 	@Override
 	public String toString() {
-		return "Employee: " + getName();
+		return "[ ID: " + getId() + " | Nome: " + getName() + " | Email: " + getEmail() + " ]";
 	}
 }
