@@ -12,7 +12,6 @@ import java.io.Writer;
 import java.lang.reflect.Array;
 
 import com.google.gson.*;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
