@@ -8,9 +8,9 @@ public abstract class BaseView {
 	protected static String read() {
 		String selection = userInput.nextLine();
 
-		if(selection == null || selection.isEmpty()) {
+		while(selection == null || selection.isEmpty()) {
 			System.out.println("Você deve escolher uma opção válida.");
-			read();
+			selection = userInput.nextLine();
 		}
 
 		return selection;
