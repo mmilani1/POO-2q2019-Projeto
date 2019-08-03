@@ -22,6 +22,10 @@ public class User extends Model {
 	}
 	
 	// Constructors
+	public String getPassword() {
+		return password;
+	}
+	
 	private User() {
 		id = autoIncrements();
 	}
@@ -61,5 +65,4 @@ public class User extends Model {
 	public String toString() {
 		return "Employee: " + getName();
 	}
-
 }
