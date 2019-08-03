@@ -1,12 +1,12 @@
-import user.Cliente;
-import user.Funcionario;
+import Models.User;
+import Models.Employee;
 
 public class Initializer {
 	private static boolean initialized = false;
 	protected static void loadData() {
 		if(!initialized) {
-			Cliente.load();
-			Funcionario.load();
+			User.load();
+			Employee.load();
 		}
 		initialized = true;
 	}
