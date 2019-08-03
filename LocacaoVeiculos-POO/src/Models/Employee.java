@@ -21,6 +21,10 @@ public class Employee extends Model {
 		return email;
 	}
 	
+	public String getPassword() {
+		return this.password;
+	}
+	
 	// Constructors
 	private Employee() {
 		id = autoIncrements();
@@ -34,7 +38,7 @@ public class Employee extends Model {
 	}
 
 	// List of Employees
-	static public List<Employee> employeess() {
+	static public List<Employee> employees() {
 		return employees;
 	}
 
@@ -49,7 +53,7 @@ public class Employee extends Model {
 		Employee employee = new Employee(name, email, password);
 		employees.add(employee);
 
-		save(Employee.class, employeess());
+		save(Employee.class, employees());
 	}
 
 	private static int autoIncrements() {
@@ -61,4 +65,5 @@ public class Employee extends Model {
 	public String toString() {
 		return "Employee: " + getName();
 	}
+
 }

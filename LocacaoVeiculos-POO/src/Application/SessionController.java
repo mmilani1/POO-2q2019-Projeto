@@ -2,26 +2,38 @@ package Application;
 
 import java.util.Scanner;
 
+import Application.Views.Employee.EmployeeRoot;
 import Application.Views.Sessions.SessionsCreate;
+import Application.Views.User.UserRoot;
+import Application.AutheticationController;
 import Models.User;
 import Models.Employee;
 
 public class SessionController {
 	private static Scanner scan = new Scanner(System.in);
-	static User authenticatedUser = null;
-	static Employee authenticatedEmployee = null;
-	
+	static public String authenticated = null;
+	static public User authenticatedUser = null;
+	static public Employee authenticatedEmployee = null;
+
 	public static void create() {
 		SessionsCreate.render();
 	}
-	
+
 	public static void store(String userType, String email, String password) {
 		switch (userType) {
 		case "client":
-			if(authenticateClient(email, password)) System.out.println("TODO"); //ClientRoot.render();
+			authenticatedUser = AutheticationController.authenticateUser(email, password);
+			if(authenticatedUser != null) {
+				authenticated = "user";
+				UserRoot.render();
+			}
 			break;
 		case "employee":
-			if(authenticateEmployee(email, password)) System.out.println("TODO"); //EmployeeRoot.render();
+			authenticatedEmployee = AutheticationController.authenticateEmployee(email, password);
+			if(authenticatedEmployee != null) {
+				authenticated = "employee";
+				EmployeeRoot.render();
+			}
 			break;
 		default:
 			break;
@@ -29,16 +41,4 @@ public class SessionController {
 		
 		scan.close();
 	}
-	
-	private static boolean authenticateClient(String email, String password) {
-		System.out.println("client");
-		return true;
-	}
-	
-	private static boolean authenticateEmployee(String email, String password) {
-		System.out.println("employee");
-		return true;
-	}
-	
-	
 }

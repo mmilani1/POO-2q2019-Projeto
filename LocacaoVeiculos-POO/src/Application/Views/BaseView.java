@@ -16,7 +16,7 @@ public abstract class BaseView {
 		return selection;
 	}
 
-	protected static String getUserPassword() {
+	protected static String getUserEmail() {
 		System.out.println("Por favor, digite seu email");
 		
 		String email = read();
@@ -25,7 +25,7 @@ public abstract class BaseView {
 	}
 
 
-	protected static String getUserEmail() {
+	protected static String getUserPassword() {
 		System.out.println("Por favor, digite sua senha");
 		
 		String password = read();
