@@ -18,13 +18,13 @@ public abstract class ApplicationRoot extends BaseView {
 				UserController.create();
 				break;
 			case "X":
+				System.exit(0);
 				return;
 			default:
 				System.out.println("Você deve escolher uma opção válida.");
 				option = read();
 				break;
 			}
-			break;
 		}
 	}
 	
