@@ -10,6 +10,7 @@ public class Employee extends Model {
 
 	private final int id;
 	private String name;
+	private String role;
 	private String email;
 	private String password;
 
@@ -19,6 +20,10 @@ public class Employee extends Model {
 	
 	public String getName() {
 		return name;
+	}
+	
+	public String getRole() {
+		return role;
 	}
 	
 	public String getEmail() {
@@ -42,9 +47,10 @@ public class Employee extends Model {
 		id = autoIncrements();
 	}
 	
-	private Employee(String name, String email, String password) {
+	private Employee(String name, String role, String email, String password) {
 		id = autoIncrements();
 		this.name= name;
+		this.role = role;
 		this.email= email;
 		this.password= password;
 	}
@@ -61,8 +67,8 @@ public class Employee extends Model {
 	}
 
 	// Public interface for creating new Employees (saves to database)
-	public static void create(String name, String email, String password) {
-		Employee employee = new Employee(name, email, password);
+	public static void create(String name, String role, String email, String password) {
+		Employee employee = new Employee(name, role, email, password);
 		employees.add(employee);
 
 		save(Employee.class, employees());

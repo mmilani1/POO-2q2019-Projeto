@@ -15,9 +15,9 @@ public class EmployeeController {
 		EmployeeCreate.render();
 	}
 
-	public static void store(String name, String email, String password) {
+	public static void store(String name, String role, String email, String password) {
 		try {
-			Employee.create(name, email, password);
+			Employee.create(name, role, email, password);
 			System.out.println("Funcionario criado com sucesso!");
 			EmployeeRoot.render();
 		} catch (Exception e) {
