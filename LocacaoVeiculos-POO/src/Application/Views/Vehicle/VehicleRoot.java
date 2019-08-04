@@ -11,7 +11,7 @@ public class VehicleRoot extends BaseView {
 		
 		System.out.println("1 - Lista de veiculos");
 		System.out.println("2 - Cadastrar um novo veiculos");
-		System.out.println("3 - Remover um veiculos");
+		System.out.println("3 - Remover um veiculo");
 		System.out.println("4 - Buscar um veiculos");
 		System.out.println("5 - Lista de locações");
 		

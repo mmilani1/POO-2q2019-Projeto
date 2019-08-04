@@ -87,6 +87,11 @@ public class Vehicle extends Model {
 
 	public static void delete(Vehicle vehicle) {
 		vehicles.remove(vehicle);
+		
+		List<Rent> rents = Rent.rents().stream().filter(r -> r.getVehicleId().equals(vehicle.getId())).collect(Collectors.toList());
+		Rent.rents().removeAll(rents);
+		Rent.update();
+		
 		save(Vehicle.class, vehicles());
 	}
 
