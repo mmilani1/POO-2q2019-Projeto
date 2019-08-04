@@ -1,8 +1,8 @@
 package Application.Views.Vehicle;
 
 import Application.VehicleController;
+import Application.ApplicationController;
 import Application.SessionController;
-import Application.Views.ApplicationRoot;
 import Application.Views.BaseView;
 import Models.Employee;
 
@@ -40,10 +40,10 @@ public class VehicleRoot extends BaseView {
 				VehicleController.search();
 				return;
 			case "X":
-				ApplicationRoot.render();
+				ApplicationController.start();
 				return;
 			default:
-				System.out.println("Vocï¿½ deve escolher uma opï¿½ï¿½o vï¿½lida");
+				System.out.println("Você deve escolher uma opção válida");
 				option = read();
 				break;
 			}

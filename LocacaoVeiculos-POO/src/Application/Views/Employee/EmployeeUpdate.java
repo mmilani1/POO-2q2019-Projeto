@@ -7,7 +7,7 @@ import Models.Employee;
 public class EmployeeUpdate extends BaseView {
 	public static void render(Employee employee) {
 		employee.setName(getNewName(employee.getName()));
-		employee.setEmail(getNewEmail(employee.getEmail()));
+		employee.setUsername(getNewUsername(employee.getUsername()));
 		
 		EmployeeController.update();
 	}
@@ -21,12 +21,12 @@ public class EmployeeUpdate extends BaseView {
 		return name;
 	}
 	
-	private static String getNewEmail(String originalEmail) {
-		System.out.println("Digite o novo email do funcionario. Caso não queira alterar, digite o email atual");
-		System.out.println("Email: " + originalEmail + "\n");
+	private static String getNewUsername(String originalUsername) {
+		System.out.println("Digite o novo username do funcionario. Caso não queira alterar, digite usernameil atual");
+		System.out.println("Username: " + originalUsername + "\n");
 		
-		String email = read();
+		String username = read();
 		
-		return email;
+		return username;
 	}
 }

@@ -1,13 +1,20 @@
 package Application;
 
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import Application.Views.Vehicle.*;
 import Application.Views.Sessions.SessionsCreate;
+import Models.Rent;
+import Models.User;
 import Models.Vehicle;
 
 public class VehicleController {
+	public static void start() {
+		VehicleRoot.render();
+	}
+
 	public static void index() {
 		VehicleIndex.render(Vehicle.vehicles());
 	}
@@ -16,9 +23,9 @@ public class VehicleController {
 		VehicleCreate.render();
 	}
 
-	public static void store(String name, String role, String email, double dailyFee) {
+	public static void store(String name, String role, String username, double dailyFee) {
 		try {
-			Vehicle.create(name, role, email, dailyFee);
+			Vehicle.create(name, role, username, dailyFee);
 			System.out.println("Veiculo criado com sucesso!");
 			VehicleRoot.render();
 		} catch (Exception e) {
@@ -36,12 +43,12 @@ public class VehicleController {
 			VehicleRoot.render();
 
 		try {
-			Vehicle vehicle = Vehicle.vehicles().stream().filter(v -> v.getId() == (Integer.parseInt(option)))
+			Vehicle vehicle = Vehicle.vehicles().stream().filter(v -> v.getId().equals(option))
 					.collect(Collectors.toList()).get(0);
 			Vehicle.delete(vehicle);
 			System.out.println("Veículo removido com sucesso!");
 		} catch (Exception IndexOutOfBoundsException) {
-			System.out.println("Não foi possivel encontrar este veículo, tente novamente");
+			System.out.println("Não foi possível encontrar este veículo, tente novamente");
 		}
 
 		VehicleRoot.render();
@@ -50,7 +57,7 @@ public class VehicleController {
 	public static void update() {
 		Vehicle.update();
 
-		System.out.println("Veiculo editado com sucesso!\n");
+		System.out.println("Veículo editado com sucesso!\n");
 
 		VehicleRoot.render();
 	}
@@ -75,16 +82,43 @@ public class VehicleController {
 	}
 
 	public static void show(String id) {
-		Vehicle vehicle = null;
 		try {
-			vehicle = Vehicle.vehicles().stream()
-					.filter(v -> v.getId() == Integer.parseInt(id))
+			Vehicle vehicle = Vehicle.vehicles().stream().filter(v -> v.getId().equals(id))
 					.collect(Collectors.toList()).get(0);
+			VehicleShow.render(vehicle);
 		} catch (Exception e) {
 			System.out.println("Não foi possivel encontrar este veículo");
 			VehicleRoot.render();
 		}
+	}
 
-		VehicleShow.render(vehicle);
+	public static void rentIndex() {
+		List<Vehicle> vehiclesToRent = Vehicle.vehicles().stream()
+				.filter(v -> v.getStatus().equals("available"))
+				.collect(Collectors.toList());
+		
+		VehicleIndex.render(vehiclesToRent);
+	}
+	
+	public static void rent(User authUser, String vehicleId, String days) {
+		Vehicle vehicle;
+		double totalToBePaid;
+		
+		try {
+			vehicle = Vehicle.vehicles().stream()
+					.filter(v -> v.getStatus().equals("available"))
+					.filter(v -> v.getId().equals(vehicleId))
+					.collect(Collectors.toList()).get(0);
+			totalToBePaid = vehicle.getDailyFee() * Integer.parseInt(days);
+			
+			vehicle.setStatus("rented");
+			Rent.create(authUser.getId(),  vehicle.getId(), days, totalToBePaid);
+		} catch (Exception e) {
+			System.out.println("\nNão foi possivel alugar este carro momento.");
+		}
+		
+		System.out.println("\nVeículo alugado com sucesso!.");
+		
+		UserController.start();
 	}
 }

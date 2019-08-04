@@ -19,13 +19,13 @@ public class EmployeeCreate extends BaseView {
 
 			String role = getEmployeeRole();
 
-			System.out.println("Digite o email:");
-			String email = read();
+			System.out.println("Digite o username:");
+			String username = read();
 
 			System.out.println("Digite a senha de acesso:");
 			String password = read();
 
-			EmployeeController.store(name, role, email, password);
+			EmployeeController.store(name, role, username, password);
 		}
 
 		System.out.println("\nVocê não tem permissões suficientes para esta ação\n");

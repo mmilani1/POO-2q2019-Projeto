@@ -8,12 +8,12 @@ public class User extends Model {
 	static private List<User> users = new ArrayList<User>();
 	static int idCounter = 0;
 
-	private final int id;
+	private final String id;
 	private String name;
-	private String email;
+	private String username;
 	private String password;
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
@@ -21,8 +21,8 @@ public class User extends Model {
 		return name;
 	}
 	
-	public String getEmail() {
-		return email;
+	public String getUsername() {
+		return username;
 	}
 	
 	// Constructors
@@ -34,10 +34,10 @@ public class User extends Model {
 		id = autoIncrements();
 	}
 	
-	private User(String name, String email, String password) {
+	private User(String name, String username, String password) {
 		id = autoIncrements();
 		this.name= name;
-		this.email= email;
+		this.username = username;
 		this.password= password;
 	}
 
@@ -53,20 +53,20 @@ public class User extends Model {
 	}
 
 	// Public interface for creating new users (saves to database)
-	public static void create(String name, String email, String password) {
-		User employee = new User(name, email, password);
+	public static void create(String name, String username, String password) {
+		User employee = new User(name, username, password);
 		users.add(employee);
 
 		save(User.class, users());
 	}
 
-	private static int autoIncrements() {
+	private static String autoIncrements() {
 		idCounter += 1;
-		return idCounter;
+		return String.valueOf(idCounter);
 	}
 
 	@Override
 	public String toString() {
-		return "[ ID: " + getId() + " | Nome: " + getName() + " | Email: " + getEmail() + " ]";
+		return "[ ID: " + getId() + " | Nome: " + getName() + " | Username: " + getUsername() + " ]";
 	}
 }

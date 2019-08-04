@@ -9,14 +9,14 @@ public class Vehicle extends Model {
 	static private List<Vehicle> vehicles = new ArrayList<Vehicle>();
 	static int idCounter = 0;
 
-	private final int id;
+	private final String id;
 	private String model;
 	private String manufacturer;
 	private String category;
-	private String status = "avaiable";
+	private String status = "available";
 	private double dailyFee;
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
@@ -40,8 +40,8 @@ public class Vehicle extends Model {
 		return this.dailyFee;
 	}
 
-	public String setStatus() {
-		return status;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	// Constructors
@@ -85,9 +85,9 @@ public class Vehicle extends Model {
 		save(Vehicle.class, vehicles());
 	}
 
-	private static int autoIncrements() {
+	private static String autoIncrements() {
 		idCounter += 1;
-		return idCounter;
+		return String.valueOf(idCounter);
 	}
 
 	@Override

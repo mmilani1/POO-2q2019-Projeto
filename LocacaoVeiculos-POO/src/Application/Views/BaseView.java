@@ -18,12 +18,12 @@ public abstract class BaseView {
 		return selection;
 	}
 
-	protected static String getUserEmail() {
-		System.out.println("\nPor favor, digite seu email");
+	protected static String getUserUsername() {
+		System.out.println("\nPor favor, digite seu username");
 		
-		String email = read();
+		String username = read();
 
-		return email;
+		return username;
 	}
 
 
@@ -49,7 +49,7 @@ public abstract class BaseView {
 			case "2":
 				return "employee";
 			default:
-				System.out.println("Você deve escolher uma opção válida");
+				System.out.println("Vocï¿½ deve escolher uma opï¿½ï¿½o vï¿½lida");
 				type = read();
 				break;
 			}

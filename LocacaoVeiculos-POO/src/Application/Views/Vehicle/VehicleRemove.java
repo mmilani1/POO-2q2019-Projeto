@@ -22,7 +22,7 @@ public class VehicleRemove extends BaseView {
 	}
 
 	private static void printOptions(List<Vehicle> vehicles) {
-		if (vehicles.size() == 1) {
+		if (vehicles.size() == 0) {
 			System.out.println("Não existe veiculos na lista");
 			return;
 		}
