@@ -9,26 +9,31 @@ import Models.Employee;
 
 public class EmployeeEdit extends BaseView {
 	private static Employee authUser = SessionController.authenticatedEmployee;
-	
+
 	public static void render(List<Employee> employees) {
-		System.out.println("Escolha um funcionario para editar.");
-		System.out.println("Caso queira cancelar esta ação, digite 'X'");
+		if (authUser.getRole().equals("super-admin")) {
+			System.out.println("Escolha um funcionario para editar.");
+			System.out.println("Caso queira cancelar esta ação, digite 'X'");
+
+			printOptions(employees);
+
+			String option = read();
+
+			EmployeeController.edit(option);
+		}
 		
-		printOptions(employees);
-		
-		String option = read();
-		
-		EmployeeController.edit(option);
+		System.out.println("Você não tem permissões suficientes para esta ação");
+		EmployeeRoot.render();
 	}
-	
+
 	private static void printOptions(List<Employee> employees) {
 		if (employees.isEmpty()) {
 			System.out.println("Não existe funcionarios na lista");
 			return;
 		}
-		
+
 		for (Employee employee : employees) {
-			if(!employee.equals(authUser)) {
+			if (!employee.equals(authUser)) {
 				System.out.println(employee.getId() + " - " + employee.getName());
 			}
 		}

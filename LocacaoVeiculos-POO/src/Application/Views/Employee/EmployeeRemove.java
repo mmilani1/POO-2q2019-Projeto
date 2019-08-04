@@ -11,15 +11,20 @@ public class EmployeeRemove extends BaseView {
 	private static Employee authUser = SessionController.authenticatedEmployee;
 	
 	public static void render(List<Employee> employees) {
-		System.out.println("Escolha um funcionario para remover.");
-		System.out.println("Caso queira cancelar esta ação, digite 'X'");
-		System.out.println();
-
-		printOptions(employees);
+		if(authUser.getRole().equals("super-admin")) {
+			System.out.println("Escolha um funcionario para remover.");
+			System.out.println("Caso queira cancelar esta ação, digite 'X'");
+			System.out.println();
+			
+			printOptions(employees);
+			
+			String option = read();
+			
+			EmployeeController.remove(option);			
+		}
 		
-		String option = read();
-		
-		EmployeeController.remove(option);
+		System.out.println("Você não tem permissões suficientes para esta ação");
+		EmployeeRoot.render();
 	}
 
 	private static void printOptions(List<Employee> employees) {
