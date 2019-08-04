@@ -1,7 +1,5 @@
 package Application;
 
-import java.util.Scanner;
-
 import Application.Views.Employee.EmployeeRoot;
 import Application.Views.Sessions.SessionsCreate;
 import Application.Views.User.UserRoot;
@@ -10,7 +8,6 @@ import Models.User;
 import Models.Employee;
 
 public class SessionController {
-	private static Scanner scan = new Scanner(System.in);
 	static public String authenticated = null;
 	static public User authenticatedUser = null;
 	static public Employee authenticatedEmployee = null;
@@ -38,7 +35,5 @@ public class SessionController {
 		default:
 			break;
 		}
-		
-		scan.close();
 	}
 }
