@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import Application.Views.Vehicle.*;
 import Application.Views.Sessions.SessionsCreate;
+import Application.Views.User.UserRoot;
 import Models.User;
 import Models.Vehicle;
 
@@ -87,7 +88,12 @@ public class VehicleController {
 			VehicleShow.render(vehicle);
 		} catch (Exception e) {
 			System.out.println("Não foi possivel encontrar este veículo");
-			VehicleRoot.render();
+			
+			if (SessionController.authenticatedEmployee != null) {
+				VehicleRoot.render();
+			} else {
+				UserRoot.render();
+			}
 		}
 	}
 
