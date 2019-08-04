@@ -6,10 +6,12 @@ public abstract class BaseView {
 	static Scanner userInput = new Scanner(System.in);
 	
 	protected static String read() {
+		System.out.printf("\n--> ");
+
 		String selection = userInput.nextLine();
 
 		while(selection == null || selection.isEmpty()) {
-			System.out.println("Você deve escolher uma opção válida.");
+			System.out.println("\nVocê deve escolher uma opção válida.");
 			selection = userInput.nextLine();
 		}
 
@@ -17,7 +19,7 @@ public abstract class BaseView {
 	}
 
 	protected static String getUserEmail() {
-		System.out.println("Por favor, digite seu email");
+		System.out.println("\nPor favor, digite seu email");
 		
 		String email = read();
 
@@ -26,7 +28,7 @@ public abstract class BaseView {
 
 
 	protected static String getUserPassword() {
-		System.out.println("Por favor, digite sua senha");
+		System.out.println("\nPor favor, digite sua senha");
 		
 		String password = read();
 

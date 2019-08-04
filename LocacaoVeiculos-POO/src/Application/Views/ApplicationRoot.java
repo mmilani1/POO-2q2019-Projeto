@@ -13,10 +13,10 @@ public abstract class ApplicationRoot extends BaseView {
 			switch (option) {
 			case "1":
 				SessionController.create();
-				break;
+				return;
 			case "2":
 				UserController.create();
-				break;
+				return;
 			case "X":
 				System.exit(0);
 				return;
