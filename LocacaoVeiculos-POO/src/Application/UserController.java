@@ -16,7 +16,8 @@ public class UserController {
 
 	public static void store(String name, String username, String password) {
 		try {
-			User.create(name, username, password);
+			User user = User.create(name, username, password);
+			SessionController.authenticatedUser = user;
 		} catch (Exception e) {
 			System.out.println("Um erro ocorreu no seu cadastro, por favor tente novamente");
 			SessionsCreate.render();

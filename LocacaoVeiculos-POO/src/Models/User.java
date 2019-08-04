@@ -63,11 +63,13 @@ public class User extends Model {
 	}
 
 	// Public interface for creating new users (saves to database)
-	public static void create(String name, String username, String password) {
-		User employee = new User(name, username, password);
-		users.add(employee);
-
+	public static User create(String name, String username, String password) {
+		User user = new User(name, username, password);
+		
+		users.add(user);
 		save(User.class, users());
+		
+		return user;
 	}
 
 	private static String autoIncrements() {
