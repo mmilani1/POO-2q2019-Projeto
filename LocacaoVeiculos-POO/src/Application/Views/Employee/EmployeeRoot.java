@@ -27,25 +27,28 @@ public class EmployeeRoot extends BaseView {
 	private static void employeeRoutes() {
 		String option = read();
 		
-		switch (option) {
-		case "1":
-			EmployeeController.index();
-			break;
-		case "2":
-			EmployeeController.create();
-			break;
-		case "3":
-			EmployeeController.remove();
-			break;
-		case "4":
-			EmployeeController.edit();
-			break;
-		case "X":
-			ApplicationRoot.render();
-			break;
-		default:
-			break;
+		while(true)	{			
+			switch (option) {
+			case "1":
+				EmployeeController.index();
+				return;
+			case "2":
+				EmployeeController.create();
+				return;
+			case "3":
+				EmployeeController.remove();
+				return;
+			case "4":
+				EmployeeController.edit();
+				return;
+			case "X":
+				ApplicationRoot.render();
+				return;
+			default:
+				System.out.println("Você deve escolher uma opção válida");
+				option = read();
+				break;
+			}
 		}
-		return;
 	}
 }
