@@ -7,6 +7,10 @@ import Application.Views.Sessions.SessionsCreate;
 import Models.Employee;
 
 public class EmployeeController {
+	public static void start() {
+		EmployeeRoot.render();
+	}
+	
 	public static void index() {
 		EmployeeIndex.render(Employee.employees());
 	}

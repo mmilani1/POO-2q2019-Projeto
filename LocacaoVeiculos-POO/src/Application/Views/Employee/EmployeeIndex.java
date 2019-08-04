@@ -2,6 +2,7 @@ package Application.Views.Employee;
 
 import java.util.List;
 
+import Application.EmployeeController;
 import Application.Views.BaseView;
 import Models.Employee;
 
@@ -17,7 +18,7 @@ public class EmployeeIndex extends BaseView {
 			option = read();
 		}
 		
-		EmployeeRoot.render();
+		EmployeeController.start();
 	}
 	
 	private static void printList(List<Employee> employees) {

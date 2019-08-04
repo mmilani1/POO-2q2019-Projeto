@@ -1,6 +1,5 @@
 package Application;
 
-import Application.Views.Employee.EmployeeRoot;
 import Application.Views.Sessions.SessionsCreate;
 import Application.Views.User.UserRoot;
 import Application.AutheticationController;
@@ -28,7 +27,7 @@ public class SessionController {
 			authenticatedEmployee = AutheticationController.authenticateEmployee(username, password);
 			if(authenticatedEmployee != null) {
 				authenticatedUser = null;
-				EmployeeRoot.render();
+				EmployeeController.start();
 			}
 			break;
 		default:

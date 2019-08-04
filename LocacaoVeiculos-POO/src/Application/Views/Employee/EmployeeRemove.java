@@ -13,7 +13,7 @@ public class EmployeeRemove extends BaseView {
 	public static void render(List<Employee> employees) {
 		if(authUser.getRole().equals("super-admin")) {
 			System.out.println("Escolha um funcionario para remover.");
-			System.out.println("Caso queira cancelar esta ação, digite 'X'");
+			System.out.println("Caso queira cancelar esta aï¿½ï¿½o, digite 'X'");
 			System.out.println();
 			
 			printOptions(employees);
@@ -23,13 +23,13 @@ public class EmployeeRemove extends BaseView {
 			EmployeeController.remove(option);			
 		}
 		
-		System.out.println("Você não tem permissões suficientes para esta ação");
-		EmployeeRoot.render();
+		System.out.println("Vocï¿½ nï¿½o tem permissï¿½es suficientes para esta aï¿½ï¿½o");
+		EmployeeController.start();
 	}
 
 	private static void printOptions(List<Employee> employees) {
 		if (employees.toArray().length == 1) {
-			System.out.println("Não existe funcionarios na lista");
+			System.out.println("Nï¿½o existe funcionarios na lista");
 			return;
 		}
 		
