@@ -15,7 +15,6 @@ public class VehicleShow extends BaseView {
 		System.out.println("Tarifa diária: " + vehicle.getId());
 		
 		System.out.println("Locações: TODO");
-
 		
 		System.out.println("\nDigite X para sair");
 		
