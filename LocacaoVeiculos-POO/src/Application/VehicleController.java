@@ -114,6 +114,9 @@ public class VehicleController {
 			Vehicle.update();
 			
 			RentController.store(authUser.getId(),  vehicle.getId(), days, totalToBePaid);
-		} catch (Exception e) { }
+		} catch (Exception e) { 
+			System.out.println("Ocorreu um erro ao alugar. Talvez o carro já esteja alugado.");
+			UserController.start();
+		}
 	}
 }
