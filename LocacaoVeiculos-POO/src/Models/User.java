@@ -1,7 +1,11 @@
 package Models;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import orm.Model;
 
 public class User extends Model {
@@ -49,7 +53,13 @@ public class User extends Model {
 	// Load data from database
 	public static void load() {
 		users = new ArrayList<>(loadInstances(User.class));
-		idCounter = users.size();
+		
+		Optional<User> maxIdUser = users.stream()
+				.collect(Collectors.maxBy(Comparator.comparing(User::getId)));
+		
+		if(maxIdUser.isPresent()) {
+			idCounter = Integer.parseInt(maxIdUser.get().getId());
+		}
 	}
 
 	// Public interface for creating new users (saves to database)

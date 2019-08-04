@@ -1,7 +1,9 @@
 package Models;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import orm.Model;
@@ -71,7 +73,13 @@ public class Rent extends Model {
 	// Load data from database
 	public static void load() {
 		rents = new ArrayList<>(loadInstances(Rent.class));
-		idCounter = rents.size();
+		
+		Optional<Rent> maxIdRent = rents.stream()
+				.collect(Collectors.maxBy(Comparator.comparing(Rent::getId)));
+		
+		if(maxIdRent.isPresent()) {
+			idCounter = Integer.parseInt(maxIdRent.get().getId());
+		}
 	}
 
 	// Public interface for creating new Employees (saves to database)

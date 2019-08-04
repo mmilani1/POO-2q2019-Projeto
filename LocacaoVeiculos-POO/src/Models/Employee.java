@@ -1,7 +1,11 @@
 package Models;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import orm.Model;
 
 public class Employee extends Model {
@@ -63,7 +67,13 @@ public class Employee extends Model {
 	// Load data from database
 	public static void load() {
 		employees = new ArrayList<>(loadInstances(Employee.class));
-		idCounter = employees.size();
+		
+		Optional<Employee> maxIdEmployee = employees.stream()
+				.collect(Collectors.maxBy(Comparator.comparing(Employee::getId)));
+		
+		if(maxIdEmployee.isPresent()) {
+			idCounter = Integer.parseInt(maxIdEmployee.get().getId());
+		}
 	}
 
 	// Public interface for creating new Employees (saves to database)
