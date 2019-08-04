@@ -18,12 +18,12 @@ public abstract class BaseView {
 		return selection;
 	}
 
-	protected static String getUserEmail() {
-		System.out.println("\nPor favor, digite seu email");
+	protected static String getUserUsername() {
+		System.out.println("\nPor favor, digite seu username");
 		
-		String email = read();
+		String username = read();
 
-		return email;
+		return username;
 	}
 
 

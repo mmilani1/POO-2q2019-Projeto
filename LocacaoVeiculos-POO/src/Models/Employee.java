@@ -1,20 +1,24 @@
 package Models;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import orm.Model;
 
 public class Employee extends Model {
 	static private List<Employee> employees = new ArrayList<Employee>();
 	static int idCounter = 0;
 
-	private final int id;
+	private final String id;
 	private String name;
 	private String role;
-	private String email;
+	private String username;
 	private String password;
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 	
@@ -26,16 +30,16 @@ public class Employee extends Model {
 		return role;
 	}
 	
-	public String getEmail() {
-		return email;
+	public String getUsername() {
+		return username;
 	}
 	
 	public String getPassword() {
 		return this.password;
 	}
 	
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	
 	public void setName (String name) {
@@ -47,11 +51,11 @@ public class Employee extends Model {
 		id = autoIncrements();
 	}
 	
-	private Employee(String name, String role, String email, String password) {
+	private Employee(String name, String role, String username, String password) {
 		id = autoIncrements();
 		this.name= name;
 		this.role = role;
-		this.email= email;
+		this.username= username;
 		this.password= password;
 	}
 
@@ -63,12 +67,18 @@ public class Employee extends Model {
 	// Load data from database
 	public static void load() {
 		employees = new ArrayList<>(loadInstances(Employee.class));
-		idCounter = employees.size();
+		
+		Optional<Employee> maxIdEmployee = employees.stream()
+				.collect(Collectors.maxBy(Comparator.comparing(Employee::getId)));
+		
+		if(maxIdEmployee.isPresent()) {
+			idCounter = Integer.parseInt(maxIdEmployee.get().getId());
+		}
 	}
 
 	// Public interface for creating new Employees (saves to database)
-	public static void create(String name, String role, String email, String password) {
-		Employee employee = new Employee(name, role, email, password);
+	public static void create(String name, String role, String username, String password) {
+		Employee employee = new Employee(name, role, username, password);
 		employees.add(employee);
 
 		save(Employee.class, employees());
@@ -83,13 +93,13 @@ public class Employee extends Model {
 		save(Employee.class, employees());
 	}
 	
-	private static int autoIncrements() {
+	private static String autoIncrements() {
 		idCounter += 1;
-		return idCounter;
+		return String.valueOf(idCounter);
 	}
 	
 	@Override
 	public String toString() {
-		return "[ ID: " + getId() + " | Nome: " + getName() + " | Email: " + getEmail() + " ]";
+		return "[ ID: " + getId() + " | Nome: " + getName() + " | Username: " + getUsername() + " ]";
 	}
 }

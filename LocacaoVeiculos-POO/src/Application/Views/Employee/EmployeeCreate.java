@@ -10,7 +10,7 @@ public class EmployeeCreate extends BaseView {
 
 	public static void render() {
 		if (authUser.getRole().equals("super-admin")) {
-			System.out.println("\nVocê agora irá cadastrar um novo funcionário");
+			System.out.println("\nVocï¿½ agora irï¿½ cadastrar um novo funcionï¿½rio");
 
 			System.out.println();
 
@@ -19,17 +19,17 @@ public class EmployeeCreate extends BaseView {
 
 			String role = getEmployeeRole();
 
-			System.out.println("Digite o email:");
-			String email = read();
+			System.out.println("Digite o username:");
+			String username = read();
 
 			System.out.println("Digite a senha de acesso:");
 			String password = read();
 
-			EmployeeController.store(name, role, email, password);
+			EmployeeController.store(name, role, username, password);
 		}
 
-		System.out.println("\nVocê não tem permissões suficientes para esta ação\n");
-		EmployeeRoot.render();
+		System.out.println("\nVocï¿½ nï¿½o tem permissï¿½es suficientes para esta aï¿½ï¿½o\n");
+		EmployeeController.start();
 	}
 
 	private static String getEmployeeRole() {
@@ -45,7 +45,7 @@ public class EmployeeCreate extends BaseView {
 			case "2":
 				return "super-admin";
 			default:
-				System.out.println("Você deve escolher uma opção válida");
+				System.out.println("Vocï¿½ deve escolher uma opï¿½ï¿½o vï¿½lida");
 				type = read();
 				break;
 			}

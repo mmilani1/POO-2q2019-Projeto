@@ -1,14 +1,11 @@
 package Application.Views.Vehicle;
 
 import Application.VehicleController;
-import Application.SessionController;
-import Application.Views.ApplicationRoot;
+import Application.ApplicationController;
+import Application.RentController;
 import Application.Views.BaseView;
-import Models.Employee;
 
 public class VehicleRoot extends BaseView {
-	static Employee user = SessionController.authenticatedEmployee;
-	
 	public static void render() {
 		System.out.println("Gerenciamento de veiculos\n");
 		
@@ -16,6 +13,7 @@ public class VehicleRoot extends BaseView {
 		System.out.println("2 - Cadastrar um novo veiculos");
 		System.out.println("3 - Remover um veiculos");
 		System.out.println("4 - Buscar um veiculos");
+		System.out.println("5 - Lista de locações");
 		
 		System.out.println("\nX - Sair");
 		
@@ -39,11 +37,14 @@ public class VehicleRoot extends BaseView {
 			case "4":
 				VehicleController.search();
 				return;
+			case "5":
+				RentController.index();
+				return;
 			case "X":
-				ApplicationRoot.render();
+				ApplicationController.start();
 				return;
 			default:
-				System.out.println("Vocï¿½ deve escolher uma opï¿½ï¿½o vï¿½lida");
+				System.out.println("Você deve escolher uma opção válida");
 				option = read();
 				break;
 			}

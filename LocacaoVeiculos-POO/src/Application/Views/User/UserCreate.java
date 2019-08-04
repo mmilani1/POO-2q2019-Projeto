@@ -12,12 +12,12 @@ public class UserCreate extends BaseView {
 		System.out.println("Digite seu nome:");
 		String name = read();
 		
-		System.out.println("Digite seu email:");
-		String email = read();
+		System.out.println("Digite seu username:");
+		String username = read();
 		
 		System.out.println("Digite sua senha de acesso:");
 		String password = read();
 		
-		UserController.store(name, email, password);
+		UserController.store(name, username, password);
 	}
 }

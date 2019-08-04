@@ -1,8 +1,8 @@
 package Application.Views.Employee;
 
+import Application.ApplicationController;
 import Application.EmployeeController;
 import Application.SessionController;
-import Application.Views.ApplicationRoot;
 import Application.Views.BaseView;
 import Application.Views.Vehicle.VehicleRoot;
 import Models.Employee;
@@ -17,7 +17,7 @@ public class EmployeeRoot extends BaseView {
 		
 		System.out.println("1 - Lista de funcionários");
 		System.out.println("2 - Cadastrar um novo funcionário");
-		System.out.println("3 - Remover um funcionario");
+		System.out.println("3 - Remover um funcionário");
 		System.out.println("4 - Editar um funcionário");
 		System.out.println("5 - Gerenciar Veiculos");
 		System.out.println("\nX - Sair");
@@ -47,7 +47,7 @@ public class EmployeeRoot extends BaseView {
 				VehicleRoot.render();
 				return;
 			case "X":
-				ApplicationRoot.render();
+				ApplicationController.start();
 				return;
 			default:
 				System.out.println("Você deve escolher uma opção válida");

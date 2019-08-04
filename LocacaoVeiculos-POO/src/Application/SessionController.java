@@ -1,6 +1,5 @@
 package Application;
 
-import Application.Views.Employee.EmployeeRoot;
 import Application.Views.Sessions.SessionsCreate;
 import Application.Views.User.UserRoot;
 import Application.AutheticationController;
@@ -8,7 +7,6 @@ import Models.User;
 import Models.Employee;
 
 public class SessionController {
-	static public String authenticated = null;
 	static public User authenticatedUser = null;
 	static public Employee authenticatedEmployee = null;
 
@@ -16,20 +14,20 @@ public class SessionController {
 		SessionsCreate.render();
 	}
 
-	public static void store(String userType, String email, String password) {
+	public static void store(String userType, String username, String password) {
 		switch (userType) {
 		case "client":
-			authenticatedUser = AutheticationController.authenticateUser(email, password);
+			authenticatedUser = AutheticationController.authenticateUser(username, password);
 			if(authenticatedUser != null) {
-				authenticated = "user";
+				authenticatedEmployee = null;
 				UserRoot.render();
 			}
 			break;
 		case "employee":
-			authenticatedEmployee = AutheticationController.authenticateEmployee(email, password);
+			authenticatedEmployee = AutheticationController.authenticateEmployee(username, password);
 			if(authenticatedEmployee != null) {
-				authenticated = "employee";
-				EmployeeRoot.render();
+				authenticatedUser = null;
+				EmployeeController.start();
 			}
 			break;
 		default:

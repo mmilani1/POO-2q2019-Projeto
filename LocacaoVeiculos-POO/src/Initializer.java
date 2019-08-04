@@ -1,6 +1,7 @@
 import Models.User;
 import Models.Vehicle;
 import Models.Employee;
+import Models.Rent;
 
 public class Initializer {
 	private static boolean initialized = false;
@@ -9,6 +10,7 @@ public class Initializer {
 			User.load();
 			Employee.load();
 			Vehicle.load();
+			Rent.load();
 		}
 		initialized = true;
 	}

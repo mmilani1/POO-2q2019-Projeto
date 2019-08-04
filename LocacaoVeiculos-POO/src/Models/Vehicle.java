@@ -1,7 +1,10 @@
 package Models;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import orm.Model;
 
@@ -9,14 +12,14 @@ public class Vehicle extends Model {
 	static private List<Vehicle> vehicles = new ArrayList<Vehicle>();
 	static int idCounter = 0;
 
-	private final int id;
+	private final String id;
 	private String model;
 	private String manufacturer;
 	private String category;
-	private String status = "avaiable";
+	private String status = "available";
 	private double dailyFee;
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
@@ -40,8 +43,8 @@ public class Vehicle extends Model {
 		return this.dailyFee;
 	}
 
-	public String setStatus() {
-		return status;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	// Constructors
@@ -65,7 +68,13 @@ public class Vehicle extends Model {
 	// Load data from database
 	public static void load() {
 		vehicles = new ArrayList<>(loadInstances(Vehicle.class));
-		idCounter = vehicles.size();
+		
+		Optional<Vehicle> maxIdVehicle = vehicles.stream()
+				.collect(Collectors.maxBy(Comparator.comparing(Vehicle::getId)));
+		
+		if(maxIdVehicle.isPresent()) {
+			idCounter = Integer.parseInt(maxIdVehicle.get().getId());
+		}
 	}
 
 	// Public interface for creating new Employees (saves to database)
@@ -85,9 +94,9 @@ public class Vehicle extends Model {
 		save(Vehicle.class, vehicles());
 	}
 
-	private static int autoIncrements() {
+	private static String autoIncrements() {
 		idCounter += 1;
-		return idCounter;
+		return String.valueOf(idCounter);
 	}
 
 	@Override

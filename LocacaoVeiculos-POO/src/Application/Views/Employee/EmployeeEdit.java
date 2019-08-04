@@ -22,8 +22,8 @@ public class EmployeeEdit extends BaseView {
 			EmployeeController.edit(option);
 		}
 		
-		System.out.println("Você não tem permissões suficientes para esta ação");
-		EmployeeRoot.render();
+		System.out.println("Vocï¿½ nï¿½o tem permissões suficientes para esta ação");
+		EmployeeController.start();
 	}
 
 	private static void printOptions(List<Employee> employees) {

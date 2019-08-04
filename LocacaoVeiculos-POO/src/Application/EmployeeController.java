@@ -7,6 +7,10 @@ import Application.Views.Sessions.SessionsCreate;
 import Models.Employee;
 
 public class EmployeeController {
+	public static void start() {
+		EmployeeRoot.render();
+	}
+	
 	public static void index() {
 		EmployeeIndex.render(Employee.employees());
 	}
@@ -15,9 +19,9 @@ public class EmployeeController {
 		EmployeeCreate.render();
 	}
 
-	public static void store(String name, String role, String email, String password) {
+	public static void store(String name, String role, String username, String password) {
 		try {
-			Employee.create(name, role, email, password);
+			Employee.create(name, role, username, password);
 			System.out.println("Funcionario criado com sucesso!");
 			EmployeeRoot.render();
 		} catch (Exception e) {
@@ -37,7 +41,7 @@ public class EmployeeController {
 		try {
 			Employee employee = Employee.employees()
 				.stream()
-				.filter(e -> e.getId() == (Integer.parseInt(option)))
+				.filter(e -> e.getId().equals(option))
 				.collect(Collectors.toList()).get(0);
 			Employee.delete(employee);
 			System.out.println("Funcionaario removido com sucesso!");
@@ -61,10 +65,10 @@ public class EmployeeController {
 		try {
 			fetchedEmployee = Employee.employees()
 				.stream()
-				.filter(employee -> employee.getId() == (Integer.parseInt(option)))
+				.filter(employee -> employee.getId().equals(option))
 				.collect(Collectors.toList()).get(0);
 		} catch (Exception IndexOutOfBoundsException) {
-			System.out.println("Não foi possivel encontrar este funcionário, tente novamente");
+			System.out.println("Nï¿½o foi possivel encontrar este funcionário, tente novamente");
 			EmployeeRoot.render();
 		}
 		
@@ -74,7 +78,7 @@ public class EmployeeController {
 	public static void update() {
 		Employee.update();
 		
-		System.out.println("Funcionario editado com sucesso!\n");
+		System.out.println("Funcionário editado com sucesso!\n");
 		
 		EmployeeRoot.render();
 	}
