@@ -61,13 +61,30 @@ public class VehicleController {
 
 	public static void filter(String model, String manufacturer, String category, double dailyFee) {
 		Stream<Vehicle> vehicles = Vehicle.vehicles().stream();
-		
-		if(!model.equals("X")) vehicles = vehicles.filter(v -> v.getModel().equals(model));
-		if(!manufacturer.equals("X")) vehicles = vehicles.filter(v -> v.getManufacturer().equals(manufacturer));
-		if(!category.equals("X")) vehicles = vehicles.filter(v -> v.getCategory().equals(category));
-		if(Double.compare(dailyFee, 0.0) != 0) vehicles = vehicles.filter(v -> v.getDailyFee() <= dailyFee);
 
+		if (!model.equals("X"))
+			vehicles = vehicles.filter(v -> v.getModel().equals(model));
+		if (!manufacturer.equals("X"))
+			vehicles = vehicles.filter(v -> v.getManufacturer().equals(manufacturer));
+		if (!category.equals("X"))
+			vehicles = vehicles.filter(v -> v.getCategory().equals(category));
+		if (Double.compare(dailyFee, 0.0) != 0)
+			vehicles = vehicles.filter(v -> v.getDailyFee() <= dailyFee);
 
 		VehicleIndex.render(vehicles.collect(Collectors.toList()));
+	}
+
+	public static void show(String id) {
+		Vehicle vehicle = null;
+		try {
+			vehicle = Vehicle.vehicles().stream()
+					.filter(v -> v.getId() == Integer.parseInt(id))
+					.collect(Collectors.toList()).get(0);
+		} catch (Exception e) {
+			System.out.println("Não foi possivel encontrar este veículo");
+			VehicleRoot.render();
+		}
+
+		VehicleShow.render(vehicle);
 	}
 }
