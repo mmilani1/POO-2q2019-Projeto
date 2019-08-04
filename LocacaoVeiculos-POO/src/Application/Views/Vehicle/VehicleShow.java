@@ -1,6 +1,7 @@
 package Application.Views.Vehicle;
 
 import Application.SessionController;
+import Application.UserController;
 import Application.VehicleController;
 import Application.Views.BaseView;
 import Models.Employee;
@@ -8,10 +9,13 @@ import Models.User;
 import Models.Vehicle;
 
 public class VehicleShow extends BaseView {
-	private static User authUser = SessionController.authenticatedUser;
-	private static Employee employeeUser = SessionController.authenticatedEmployee;
+	private static User authUser;
+	private static Employee employeeUser;
 	private static Vehicle viewdVehicle;
+	
 	public static void render(Vehicle vehicle) {
+		authUser = SessionController.authenticatedUser;
+		employeeUser = SessionController.authenticatedEmployee;
 		viewdVehicle = vehicle;
 		
 		System.out.println("\nDetalhes do veículo\n");
@@ -43,10 +47,18 @@ public class VehicleShow extends BaseView {
 			VehicleController.rent(authUser, viewdVehicle.getId(), days);
 			break;
 		case "X":
-			VehicleController.start();
+			returnToRoot();
 			break;
 		default:
 			break;
 		}
+	}
+	
+	private static void returnToRoot() {
+		if(employeeUser != null) {
+			VehicleController.start();
+		}
+		
+		UserController.start();
 	}
 }
