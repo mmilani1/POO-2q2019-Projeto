@@ -2,6 +2,7 @@ package Application.Views.Vehicle;
 
 import Application.VehicleController;
 import Application.ApplicationController;
+import Application.RentController;
 import Application.Views.BaseView;
 
 public class VehicleRoot extends BaseView {
@@ -12,6 +13,7 @@ public class VehicleRoot extends BaseView {
 		System.out.println("2 - Cadastrar um novo veiculos");
 		System.out.println("3 - Remover um veiculos");
 		System.out.println("4 - Buscar um veiculos");
+		System.out.println("5 - Lista de locações");
 		
 		System.out.println("\nX - Sair");
 		
@@ -34,6 +36,9 @@ public class VehicleRoot extends BaseView {
 				return;
 			case "4":
 				VehicleController.search();
+				return;
+			case "5":
+				RentController.index();
 				return;
 			case "X":
 				ApplicationController.start();
