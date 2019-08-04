@@ -1,4 +1,5 @@
 import Models.User;
+import Models.Vehicle;
 import Models.Employee;
 
 public class Initializer {
@@ -7,6 +8,7 @@ public class Initializer {
 		if(!initialized) {
 			User.load();
 			Employee.load();
+			Vehicle.load();
 		}
 		initialized = true;
 	}

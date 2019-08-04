@@ -8,7 +8,6 @@ public class UserController {
 	public static void create() {
 		UserCreate.render();
 	}
-	
 
 	public static void store(String name, String email, String password) {
 		try {

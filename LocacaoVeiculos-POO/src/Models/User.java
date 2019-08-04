@@ -5,7 +5,7 @@ import java.util.List;
 import orm.Model;
 
 public class User extends Model {
-	static private List<User> employees = new ArrayList<User>();
+	static private List<User> users = new ArrayList<User>();
 	static int idCounter = 0;
 
 	private final int id;
@@ -43,19 +43,19 @@ public class User extends Model {
 
 	// List of users
 	static public List<User> users() {
-		return employees;
+		return users;
 	}
 
 	// Load data from database
 	public static void load() {
-		employees = new ArrayList<>(loadInstances(User.class));
-		idCounter = employees.size();
+		users = new ArrayList<>(loadInstances(User.class));
+		idCounter = users.size();
 	}
 
 	// Public interface for creating new users (saves to database)
 	public static void create(String name, String email, String password) {
 		User employee = new User(name, email, password);
-		employees.add(employee);
+		users.add(employee);
 
 		save(User.class, users());
 	}
