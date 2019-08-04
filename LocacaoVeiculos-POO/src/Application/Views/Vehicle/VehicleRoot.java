@@ -2,13 +2,9 @@ package Application.Views.Vehicle;
 
 import Application.VehicleController;
 import Application.ApplicationController;
-import Application.SessionController;
 import Application.Views.BaseView;
-import Models.Employee;
 
 public class VehicleRoot extends BaseView {
-	static Employee user = SessionController.authenticatedEmployee;
-	
 	public static void render() {
 		System.out.println("Gerenciamento de veiculos\n");
 		

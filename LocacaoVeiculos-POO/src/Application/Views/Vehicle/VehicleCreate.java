@@ -5,7 +5,7 @@ import Application.Views.BaseView;
 
 public class VehicleCreate extends BaseView {
 	public static void render() {
-		System.out.println("\nVocï¿½ agora irï¿½ cadastrar um novo veiculo");
+		System.out.println("\nVocê agora irá cadastrar um novo veículo");
 
 		System.out.println();
 

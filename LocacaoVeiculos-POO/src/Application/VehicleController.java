@@ -6,7 +6,6 @@ import java.util.stream.Stream;
 
 import Application.Views.Vehicle.*;
 import Application.Views.Sessions.SessionsCreate;
-import Models.Rent;
 import Models.User;
 import Models.Vehicle;
 
@@ -112,13 +111,9 @@ public class VehicleController {
 			totalToBePaid = vehicle.getDailyFee() * Integer.parseInt(days);
 			
 			vehicle.setStatus("rented");
-			Rent.create(authUser.getId(),  vehicle.getId(), days, totalToBePaid);
-		} catch (Exception e) {
-			System.out.println("\nNão foi possivel alugar este carro momento.");
-		}
-		
-		System.out.println("\nVeículo alugado com sucesso!.");
-		
-		UserController.start();
+			Vehicle.update();
+			
+			RentController.store(authUser.getId(),  vehicle.getId(), days, totalToBePaid);
+		} catch (Exception e) { }
 	}
 }
