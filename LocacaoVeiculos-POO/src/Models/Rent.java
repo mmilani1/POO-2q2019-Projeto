@@ -106,7 +106,7 @@ public class Rent extends Model {
 
 	@Override
 	public String toString() {
-		return "[ ID: " + getId() + " | Clinete: " + this.user().getName() + " | Veiculo: " + this.vehicle().getModel()
+		return "[ ID: " + getId() + " | Cliente: " + this.user().getName() + " | Veiculo: " + this.vehicle().getModel()
 				+ " | Duração: " + getDays() + " dias | Tarifa Final: " + getTotalPaid() + "]";
 	}
 }
